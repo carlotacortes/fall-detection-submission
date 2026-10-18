@@ -23,7 +23,7 @@ python -m uvicorn backend.main:app --host 127.0.0.1 --port 8000 --workers 1
 4. View saved events in **Event History**.
 5. Click **Stop Camera** to stop detection.
 
-Events are saved automatically saved in `backend/data/events.json`.
+Events are automatically saved in `backend/data/events.json`.
 
 Press **Ctrl+C** in the terminal to stop the server.
 
