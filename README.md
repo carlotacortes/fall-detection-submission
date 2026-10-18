@@ -27,6 +27,13 @@ Events are automatically saved in `backend/data/events.json`.
 
 Press **Ctrl+C** in the terminal to stop the server.
 
+## Demo
+
+A short demonstration of the real-time fall detection system. It shows sitting down, bending over, picking up objects and then falling. 
+
+**Note:** Recording the screen made the application slower because the Mac was running both the fall detection system and the screen recorder at the same time. Without recording, the application runs more smoothly.
+
+
 ## Files
 
 ```text
