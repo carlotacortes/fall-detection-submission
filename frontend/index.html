@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Local webcam pose estimation with MediaPipe Pose Landmarker Lite." />
+    <title>Real-Time Fall Detection</title>
+    <link rel="stylesheet" href="./style.css" /> 
+    <script type="module" src="./app.js"></script>
+  </head>
+  <body>
+    <main class="app">
+      <header>
+        <h1>Real-Time Fall Detection</h1>
+      </header>
+      <!-- Camera controls and video preview -->
+      <section class="camera-panel" aria-label="Webcam pose estimation">
+        <div class="toolbar">
+          <div class="controls">
+            <button id="start-camera" type="button">Start Camera</button>
+            <button id="stop-camera" type="button" disabled>Stop Camera</button>
+          </div>
+          <p id="status" class="status" data-state="off" role="status" aria-live="polite" aria-atomic="true">
+            <span class="status-dot" aria-hidden="true"></span>
+            <span id="status-label">Camera inactive / ready</span>
+          </p>
+        </div>
+
+        <p class="camera-instructions">Position your camera so your full body is visible.</p>
+
+        <div class="preview-frame">
+          <div id="video-stage" class="video-stage">
+            <video id="webcam" autoplay muted playsinline aria-label="Live webcam preview"></video>
+            <canvas id="pose-overlay" aria-hidden="true"></canvas>
+            <p class="camera-placeholder">Camera stopped. Click Start Camera to begin real-time fall detection.</p>
+          </div>
+          <p id="fall-warning" class="fall-warning" role="alert" aria-atomic="true" hidden></p>
+        </div>
+      </section>
+      <!-- Application messages -->
+      <p id="status-message" class="status-message" role="alert" aria-atomic="true"></p>
+      <p id="event-delivery" class="delivery-message" role="status" aria-live="polite"></p>
+      <!-- Saved events and filters -->
+      <section id="event-history" class="history-panel" aria-labelledby="history-title">
+        <h2 id="history-title">Event History</h2>
+        <form id="history-filters" class="history-filters">
+          <div class="history-field">
+            <label for="history-start-date">Start date</label>
+            <input id="history-start-date" type="date" name="date_from" />
+          </div>
+          <div class="history-field">
+            <label for="history-end-date">End date</label>
+            <input id="history-end-date" type="date" name="date_to" />
+          </div>
+          <div class="history-field history-type">
+            <label for="history-event-type">Event type</label>
+            <select id="history-event-type" name="event_type">
+              <option value="">All events</option>
+              <option value="fall_detected">Fall detected</option>
+            </select>
+          </div>
+          <div class="history-actions">
+            <button id="history-refresh" type="submit">Refresh</button>
+            <button id="history-clear" type="button">Clear Filters</button>
+          </div>
+        </form>
+
+        <p id="history-message" class="history-message" role="status" aria-live="polite" aria-atomic="true">Loading events...</p>
+        <div id="history-results" class="history-results" hidden>
+          <table class="history-table" aria-labelledby="history-title">
+            <thead>
+              <tr>
+                <th scope="col">Date &amp; Time</th>
+                <th scope="col">Event Type</th>
+                <th scope="col" title="Rule-based evidence score, not a probability">Rule-based evidence score</th>
+              </tr>
+            </thead>
+            <tbody id="history-body"></tbody>
+          </table>
+        </div>
+      </section>
+      <noscript>This application requires JavaScript to access the camera and estimate poses.</noscript>
+    </main>
+  </body>
+</html>

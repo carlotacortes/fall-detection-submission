@@ -1,0 +1,15 @@
+# Python environment and cache
+.venv/
+__pycache__/
+*.pyc
+
+# Local configuration
+.env
+.env.*
+!.env.example
+
+# Saved event history (created when the app runs)
+/backend/data/
+
+# macOS folder metadata
+.DS_Store

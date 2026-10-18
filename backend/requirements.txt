@@ -1,0 +1,4 @@
+fastapi==0.143.2
+pydantic==2.14.1
+tinydb==4.9.0
+uvicorn==0.54.0
